@@ -9,6 +9,6 @@ public class Dealer {
 	}
 
 	public List<Card> getHand() {
-		return null;
+		return null; 
 	}
 }

@@ -34,7 +34,7 @@ public class Player {
 
 	public void hit(Card card) {
 		hand.add(card);
-	}
+	} // deal?
 
 	public void split() {
 		if (hand.size() == 2 && hand.get(0).getValue() == hand.get(1).getValue()) {

@@ -55,12 +55,12 @@ public class House {
 	    public double getHouseEarnings() {
 	        return earnings;
 	    }
-		public Card deal(ArrayList<Card> a) {
-			ArrayList<Card>.shuffle(a); // help
-			Card drawnCard = ((ArrayList<Card>) a).remove(0);
-			return drawnCard;
-
-		}
+//		public Card deal(ArrayList<Card> a) {
+//			ArrayList<Card>.shuffle(a); // help
+//			Card drawnCard = ((ArrayList<Card>) a).remove(0);
+//			return drawnCard;
+//
+//		} maybe not because it's in the deck already?
 
 
 		// method for calculating total value in hand with ability to bust
@@ -81,7 +81,7 @@ public class House {
 		}
 		public void houseVersionHit(ArrayList<Card> hand) {
 		    while (calculateHandValue(hand) < 17) {
-		        Card drawnCard = hand.deal(); // figure this out
+		        Card drawnCard = hand.getDealtCard() // figure this out
 		       hand.add(drawnCard); // copy from player?
 		    }
 		}

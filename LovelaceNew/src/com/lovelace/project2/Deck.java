@@ -131,6 +131,6 @@ public class Deck {
 		Card dealtCard = ((List<Card>) a).remove(0);
 		return dealtCard;
 
-	}
+	} // change to be able to work in game
 
 }
