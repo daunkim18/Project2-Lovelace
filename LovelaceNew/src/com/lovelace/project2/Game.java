@@ -25,6 +25,14 @@ public class Game {
 		
 		
 		System.out.println("Welcome to Lovelace's Blackjack! Are you ready to play?");
+		  System.out.println("┌─────────┐");
+			System.out.println("│         │");
+	        System.out.println("│LOVELACE │");
+	        System.out.println("│BLACKJACK│");	        
+	        System.out.println("│         │");
+	        System.out.println("│         │");
+	        System.out.println("│         │");
+	        System.out.println("└─────────┘");
 		System.out.println("Please enter your name:");
 		//start loop?
 		Scanner in1 = new Scanner(System.in);
@@ -132,7 +140,7 @@ public class Game {
 
         if (playAgainChoice.equals("no")) {
             playAgain = false;
-            System.out.println("Thank you for playing! See you next time.");
+            System.out.println("Thank you for playing! See you next time!");
 
 
         }
