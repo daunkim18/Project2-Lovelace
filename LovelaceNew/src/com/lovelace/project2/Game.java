@@ -132,6 +132,9 @@ public class Game {
 
         if (playAgainChoice.equals("no")) {
             playAgain = false;
+            System.out.println("Thank you for playing! See you next time.");
+
+
         }
     }
     
