@@ -46,23 +46,36 @@ public class Game {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	    
+	      
 		 // Initialize a new deck and shuffle it
         Deck deck = new Deck();
-        Deck.shuffle(deck);
+        House house = new House(deck);
+
+        
+        //shuffle deck
+        deck.shuffle();
 
         // Deal initial cards to the player and dealer
         List<Card> playerHand = new ArrayList<>();
-        ((Deck) playerHand).deal();
-        ((Deck) playerHand).deal();
+        playerHand.add(deck.deal(deck));
+        playerHand.add(deck.deal(deck));
         List<Card> dealerHand = new ArrayList<>();
-        ((Deck) dealerHand).deal();
-        ((Deck) dealerHand).deal();
+        dealerHand.add(deck.deal(deck));
+        dealerHand.add(deck.deal(deck));
+
         // why is this not the way it should look
 
+        
+        
         // Play the game
         boolean gameOver = false;
         boolean playerBusted = false;
         boolean dealerBusted = false;
+        
+   
+
 
         while (!gameOver) {
             System.out.println("\nPlayer's Hand: " + playerHand + " (Total: " + player1.getHand() + ")");
@@ -73,27 +86,28 @@ public class Game {
             String choice = in.nextLine().toUpperCase();
 
             if (choice.equals("H")) {
-                playerHand.add(deck.deal()); 
-                if (playerHand.getValue() > 21) { // need to add how to get value of hand
-                    System.out.println("\nPlayer's Hand: " + playerHand + " (Total: " + player1.getHand() + ")");
+                playerHand.add(deck.deal(deck)); 
+                if (getTotalValue(playerHand) > 21) { // need to add how to get value of hand
+                	System.out.println("\nPlayer's Hand: " + playerHand + " (Total: " + getTotalValue(playerHand) + ")");
+
                     System.out.println("Player busts! Dealer wins.");
                     playerBusted = true;
                     gameOver = true;
                 }
             } else if (choice.equals("S")) {
                 // Dealer's turn
-                while (dealerHand.getValue()) < 17) { // need to edit dealer class to get value of a hand
-                    dealerHand.add(deck.deal());
+                while (getTotalValue(dealerHand) < 17) { // need to edit dealer class to get value of a hand
+                    dealerHand.add(deck.deal(deck));
                 }
 
-                System.out.println("\nDealer's Hand: " + dealerHand + " (Total: " + dealerHand.getValue() + ")");
-                if (dealerHand.getValue()) > 21) {
+                System.out.println("\nDealer's Hand: " + dealerHand + " (Total: " + getTotalValue(dealerHand) + ")");
+                if (getTotalValue(dealerHand) > 21) {
                     System.out.println("Dealer busts! Player wins.");
                     dealerBusted = true;
                 } else {
-                    if (playerHand.getValue() > dealerHand.getValue()) { 
+                    if (getTotalValue(playerHand) > getTotalValue(dealerHand)) { 
                         System.out.println("Player wins!");
-                    } else if (playerHand.getValue() < dealerHand.getValue()) {
+                    } else if (getTotalValue(playerHand) < getTotalValue(dealerHand)) {
                         System.out.println("Dealer wins.");
                     } else {
                         System.out.println("It's a tie.");
@@ -109,9 +123,31 @@ public class Game {
         String playAgain = in.nextLine().toUpperCase();
 
         if (!playAgain.equals("y".toLowerCase())) {
-            break;
+            return;
         }
+        
     }
+	private static int getTotalValue(List<Card> hand) {
+	    int totalValue = 0;
+	    int numAces = 0;
+
+	    for (Card card : hand) {
+	        totalValue += card.getValue();
+
+	        // Check for Ace cards
+	        if (card.getValue() == 11) {
+	            numAces++;
+	        }
+
+	        // Adjust the value if the total exceeds 21 and there are Aces
+	        while (totalValue > 21 && numAces > 0) {
+	            totalValue -= 10; // Convert an Ace from 11 to 1
+	            numAces--;
+	        }
+	    }
+
+	    return totalValue;
+	}
 
   
 	}

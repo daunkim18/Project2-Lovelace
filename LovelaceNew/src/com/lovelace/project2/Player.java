@@ -107,5 +107,25 @@ public class Player {
 
 		return score;
 	}
+	
+	 public int getValue() {
+	        int value = 0;
+	        int numAces = 0;
+
+	        for (Card card : hand) {
+	            value += card.getValue();
+	            if (card.getValue() == 11) {
+	                numAces++;
+	            }
+	        }
+
+	        while (value > 21 && numAces > 0) {
+	            value -= 10;
+	            numAces--;
+	        }
+
+	        return value;
+	    }
+
 
 }
