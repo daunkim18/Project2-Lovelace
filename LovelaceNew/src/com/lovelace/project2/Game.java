@@ -13,7 +13,7 @@ public class Game {
 //		Shuffle the deck between each round
 //		Upon completion of a game, write to file the player's updated earnings (Optional: sort the data being saved based on winnings)
 		
-		System.out.println("Welcome to Lovelace's Blackjack!");
+		System.out.println("Welcome to Lovelace's Blackjack! Are you ready to play?");
 		
 		String playerName = "Daun Kim";
 		String directoryPath = "game_records/" + playerName;
