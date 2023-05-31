@@ -16,12 +16,19 @@ public class Game {
 //		Prompt the user if they would like to continue playing
 //		Shuffle the deck between each round
 //		Upon completion of a game, write to file the player's updated earnings (Optional: sort the data being saved based on winnings)
+	
+		//playgain loop
+		Scanner in = new Scanner(System.in);
+		 boolean playAgain = true;
+		    
+		    while (playAgain) {
+		
 		
 		System.out.println("Welcome to Lovelace's Blackjack! Are you ready to play?");
 		System.out.println("Please enter your name:");
 		//start loop?
-		Scanner in = new Scanner(System.in);
-		String playerName = in.nextLine();
+		Scanner in1 = new Scanner(System.in);
+		String playerName = in1.nextLine();
 		
 		//if // player name = something in the directory, println "Welcome again, name!" if not, "welcome, name!"
 		Player player1 = new Player(playerName);
@@ -83,7 +90,7 @@ public class Game {
 
             // Player's turn
             System.out.print("Do you want to Hit? Enter \"H\" ");
-            String choice = in.nextLine().toUpperCase();
+            String choice = in1.nextLine().toUpperCase();
 
             if (choice.equals("H")) {
                 playerHand.add(deck.deal(deck)); 
@@ -120,11 +127,15 @@ public class Game {
 
         // Check if the player wants to play again
         System.out.println("Do you want to play again? Enter \"yes\" or \"no\"");
-        String playAgain = in.nextLine().toUpperCase();
+        String playAgainChoice = in.nextLine().toLowerCase();
+      
 
-        if (!playAgain.equals("y".toLowerCase())) {
-            return;
+        if (playAgainChoice.equals("no")) {
+            playAgain = false;
         }
+    }
+    
+    in.close();
         
     }
 	private static int getTotalValue(List<Card> hand) {
