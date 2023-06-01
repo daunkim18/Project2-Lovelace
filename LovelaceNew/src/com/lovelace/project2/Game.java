@@ -33,7 +33,12 @@ public class Game {
 	        System.out.println("│         │");
 	        System.out.println("│         │");
 	        System.out.println("└─────────┘");
+			System.out.println("\nCreated by Daun & Ksena");
+			Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter your name:");
+		String name = scanner.next();
+		System.out.println("Hi " + name + " ! Let's get started! ");
+		System.out.println("Type anything to continue");
 		//start loop?
 		Scanner in1 = new Scanner(System.in);
 		String playerName = in1.nextLine();
@@ -140,7 +145,12 @@ public class Game {
 
         if (playAgainChoice.equals("no")) {
             playAgain = false;
-            System.out.println("Thank you for playing! See you next time!");
+            System.out.println("Thank you for playing the game! See you next time!\"" + "\n⠀⠀⠀⢀⡴⠋⠉⢉⠍⣉⡉⠉⠉⠉⠓⠲⠶⠤⣄⠀⠀⠀\r\n"
+    				+ "⠀⠀⢀⠎⠀⠪⠾⢊⣁⣀⡀⠄⠀⠀⡌⠉⠁⠄⠀⢳⠀⠀\r\n" + "⠀⣰⠟⣢⣤⣐⠘⠛⣻⠻⠭⠇⠀⢤⡶⠟⠛⠂⠀⢌⢷⡀\r\n" + "⢸⢈⢸⠠⡶⠬⣉⡉⠁⠀⣠⢄⡀⠀⠳⣄⠑⠚⣏⠁⣪⠇\r\n"
+    				+ "⠀⢯⡊⠀⠹⡦⣼⣍⠛⢲⠯⢭⣁⣲⣚⣁⣬⢾⢿⠈⡜⠀\r\n" + "⠀⠀⠙⡄⠀⠘⢾⡉⠙⡟⠶⢶⣿⣶⣿⣶⣿⣾⣿⠀⡇⠀\r\n" + "⠀⠀⠀⠙⢦⣤⡠⡙⠲⠧⠀⣠⣇⣨⣏⣽⡹⠽⠏⠀⡇⠀\r\n"
+    				+ "⠀⠀⠀⠀⠀⠈⠙⠦⢕⡋⠶⠄⣤⠤⠤⠤⠤⠂⡠⠀⡇⠀\r\n" + "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠒⠦⠤⣄⣀⣀⣀⣠⠔⠁⠀");
+
+        
 
 
         }

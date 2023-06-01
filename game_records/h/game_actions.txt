@@ -1,0 +1,4 @@
+Player hit
+Dealer stay
+Player hit
+Dealer stay
