@@ -12,6 +12,13 @@ public class House {
 		private static double earnings;
 		// figure out how to calculate earnings from betswon / betslost / betplaced
 		private static ArrayList<Card> cardsInHand;
+		private Deck deck;
+		
+		public House(Deck deck) {
+	        earnings = 0;
+	        cardsInHand = new ArrayList<>();
+	        this.deck = deck;
+	    }
 		// take dealt cards from arraylist
 		// take more if player chose to hit
 		private List<Integer> playerBets;
@@ -81,7 +88,8 @@ public class House {
 		}
 		public void houseVersionHit(ArrayList<Card> hand) {
 		    while (calculateHandValue(hand) < 17) {
-		        Card drawnCard = hand.getDealtCard() // figure this out
+//		        Card drawnCard = hand.getDealtCard() // figure this out
+		    	 Card drawnCard = Deck.deal(deck); // Call the deal() method from the Deck class to draw a card
 		       hand.add(drawnCard); // copy from player?
 		    }
 		}
