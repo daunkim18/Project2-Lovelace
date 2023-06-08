@@ -1,2 +1,5 @@
 Player hit
 Dealer stay
+Player: h
+Player hit
+Dealer stay

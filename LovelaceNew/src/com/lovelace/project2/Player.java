@@ -15,6 +15,10 @@ public class Player {
 		this.hand = new ArrayList<>();
 	}
 
+	public Player(String playerName, double playerWinnings) {
+		// TODO Auto-generated constructor stub
+	}
+
 	// getters and setters
 	public String getName() {
 		return name;

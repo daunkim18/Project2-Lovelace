@@ -1,13 +1,25 @@
 package com.lovelace.project2;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.List;
 import java.util.ArrayList;
 
+
 public class Game {
+	  private static final String PLAYERS_FILE = "players.txt"; // File containing player data
+	  
 	public static void main(String[] args) {
+		
+		Map<String, Double> playerData = readPlayerData();
+        
 //		Main method: Game logic
 //		At the start of the program, read in the names and winnings of all previous players
 //		At the start of the program, prompt the user for their name
@@ -16,13 +28,24 @@ public class Game {
 //		Prompt the user if they would like to continue playing
 //		Shuffle the deck between each round
 //		Upon completion of a game, write to file the player's updated earnings (Optional: sort the data being saved based on winnings)
-	
+		
+
+        
 		//playgain loop
 		Scanner in = new Scanner(System.in);
 		 boolean playAgain = true;
 		    
 		    while (playAgain) {
-		
+
+				  // Read player data from file
+		        
+		        System.out.println("Previous Player Data:");
+		        for (Map.Entry<String, Double> entry : playerData.entrySet()) {
+		            String playerName = entry.getKey();
+		            double playerWinnings = entry.getValue();
+		            System.out.println("Player: " + playerName + ", Winnings: " + playerWinnings);
+		        }
+
 		
 		System.out.println("Welcome to Lovelace's Blackjack! Are you ready to play?");
 		  System.out.println("┌─────────┐");
@@ -43,6 +66,7 @@ public class Game {
 		Scanner in1 = new Scanner(System.in);
 		String playerName = in1.nextLine();
 		
+		
 		//if // player name = something in the directory, println "Welcome again, name!" if not, "welcome, name!"
 		Player player1 = new Player(playerName);
 		String directoryPath = "game_records/" + playerName;
@@ -58,7 +82,8 @@ public class Game {
 		// Write game actions to the player's file
 		try (FileWriter fileWriter = new FileWriter(filePath, true)) {
 			// Write the game actions, e.g., player's moves, dealer's moves
-			fileWriter.write("Player hit\n");
+			//Write more information(current cards in each player's hand)
+			fileWriter.write("Player: " + name + "\n" + "Player hit\n");
 			fileWriter.write("Dealer stay\n");
 
 			// Flush and close the file writer
@@ -137,6 +162,12 @@ public class Game {
                 gameOver = true;
             }
         }
+        // Update player's earnings based on game outcome
+        double playerEarnings = player1.getEarnings();
+        playerData.put(playerName, playerEarnings);
+        
+        // Write updated player data to file
+        writePlayerData(playerData);
 
         // Check if the player wants to play again
         System.out.println("Do you want to play again? Enter \"yes\" or \"no\"");
@@ -159,6 +190,23 @@ public class Game {
     in.close();
         
     }
+	private static void writePlayerData(Map<String, Double> playerData) {
+	    // Sort the player data based on winnings
+	    List<Map.Entry<String, Double>> sortedPlayerData = new ArrayList<>(playerData.entrySet());
+	    sortedPlayerData.sort(Map.Entry.comparingByValue());
+
+	    try (FileWriter fileWriter = new FileWriter("players.txt")) {
+	        // Write the updated player data to the file
+	        for (Map.Entry<String, Double> entry : sortedPlayerData) {
+	            String playerName = entry.getKey();
+	            double winnings = entry.getValue();
+	            fileWriter.write(playerName + ", " + winnings + "\n");
+	        }
+	        fileWriter.flush();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
 	private static int getTotalValue(List<Card> hand) {
 	    int totalValue = 0;
 	    int numAces = 0;
@@ -167,7 +215,7 @@ public class Game {
 	        totalValue += card.getValue();
 
 	        // Check for Ace cards
-	        if (card.getValue() == 11) {
+	        if (card.getRank() == Rank.ACE) {
 	            numAces++;
 	        }
 
@@ -179,6 +227,57 @@ public class Game {
 	    }
 
 	    return totalValue;
+	}
+	private static Map<String, Double> readPlayerData() {
+	    Map<String, Double> playerData = new HashMap<>();
+	    File file = new File("players.txt");
+
+	    if (!file.exists()) {
+	        try {
+	            file.createNewFile();
+	            FileWriter fileWriter = new FileWriter(file);
+
+	            // Add default player entries
+	            playerData.put("Daun", 100.0);
+	            playerData.put("Ksena", 250.5);
+	            playerData.put("Josh", 50.0);
+
+	            // Write player data to the file
+	            for (Map.Entry<String, Double> entry : playerData.entrySet()) {
+	                fileWriter.write(entry.getKey() + ", " + entry.getValue() + "\n");
+	            }
+
+	            fileWriter.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    } else {
+	        try (Scanner scanner = new Scanner(file)) {
+	            while (scanner.hasNextLine()) {
+	                String line = scanner.nextLine();
+	                String[] parts = line.split(", ");
+	                if (parts.length == 2) {
+	                    String playerName = parts[0].trim();
+	                    double winnings = Double.parseDouble(parts[1].trim());
+	                    playerData.put(playerName, winnings);
+	                }
+	            }
+	        } catch (FileNotFoundException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	 // Sort the player data based on winnings
+	    List<Map.Entry<String, Double>> sortedPlayerData = new ArrayList<>(playerData.entrySet());
+	    sortedPlayerData.sort(Map.Entry.comparingByValue());
+
+	    // Create a sorted map for player data
+	    LinkedHashMap<String, Double> sortedPlayerDataMap = new LinkedHashMap<>();
+	    for (Map.Entry<String, Double> entry : sortedPlayerData) {
+	        sortedPlayerDataMap.put(entry.getKey(), entry.getValue());
+	    }
+
+	    return sortedPlayerDataMap;
 	}
 
   

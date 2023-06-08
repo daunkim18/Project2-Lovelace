@@ -1,2 +1,14 @@
 Player hit
 Dealer stay
+Player: Daun
+Player hit
+Dealer stay
+Player: dada
+Player hit
+Dealer stay
+Player: dada
+Player hit
+Dealer stay
+Player: daj
+Player hit
+Dealer stay
