@@ -1,0 +1,9 @@
+Player: s
+Player hit
+Dealer stay
+Player: sdfsd
+Player hit
+Dealer stay
+Player: f
+Player hit
+Dealer stay

@@ -1,0 +1,6 @@
+Player: ewe
+Player hit
+Dealer stay
+Player: sdfs
+Player hit
+Dealer stay

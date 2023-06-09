@@ -4,7 +4,7 @@ public class Card {
     private Suit suit; // enum suit
     private Rank rank; // enum rank
     private int value;
-    
+
     public Card(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;
@@ -19,7 +19,7 @@ public class Card {
             return rank.ordinal() + 1; // For other cards, the value is the rank + 1
         }
     }
-    
+
     public void setValue(int value) {
         this.value = value;
     }

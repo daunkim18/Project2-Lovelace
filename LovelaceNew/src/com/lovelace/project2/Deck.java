@@ -12,10 +12,9 @@ public class Deck {
 //	private static Deck deckOfCards;
 	private static List<Card> cards;
 
-	
 	public Deck() {
 		cards = initialDeck();
-        shuffle();
+		shuffle();
 	}
 
 //	public Deck(Card dealtCard, int numberOfCards, List<Card> deckOfCards) {
@@ -52,10 +51,10 @@ public class Deck {
 	public static List<Card> initialDeck() {
 		List<Card> startingDeck = new ArrayList<Card>();
 		for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
-                startingDeck.add(new Card(suit, rank));
-            }
-        }
+			for (Rank rank : Rank.values()) {
+				startingDeck.add(new Card(suit, rank));
+			}
+		}
 //		startingDeck.add(new Card(Suit.DIAMONDS, 2));
 //		startingDeck.add(new Card(Suit.DIAMONDS, 3));
 //		startingDeck.add(new Card(Suit.DIAMONDS, 4));
@@ -117,10 +116,10 @@ public class Deck {
 		System.out.println("Would you like your Ace to count as a 1 or 10?\nPlease enter below:");
 		int answer = in.nextInt();
 		if (answer == 1) {
-		//	dealtCard.setValue(1);
+			// dealtCard.setValue(1);
 			return 1;
 		} else if (answer == 10) {
-		//	dealtCard.setValue(10);
+			// dealtCard.setValue(10);
 			return 10;
 		} else { // need to handle other cases
 
@@ -129,27 +128,27 @@ public class Deck {
 
 	}
 
-    public void shuffle() {
-        Random random = new Random();
+	public void shuffle() {
+		Random random = new Random();
 
-        for (int i = cards.size() - 1; i > 0; i--) {
-            int j = random.nextInt(i + 1);
-            Card temp = cards.get(i);
-            cards.set(i, cards.get(j));
-            cards.set(j, temp);
-        }
-    }
-    
+		for (int i = cards.size() - 1; i > 0; i--) {
+			int j = random.nextInt(i + 1);
+			Card temp = cards.get(i);
+			cards.set(i, cards.get(j));
+			cards.set(j, temp);
+		}
+	}
+
 //    public static void shuffle(Deck deck) {
 //		Deck.shuffle(deck);
 //	}
 
 	public static Card deal(Deck deck) {
-		 if (cards.isEmpty()) {
-	            throw new IllegalStateException("Deck is empty. Cannot deal a card.");
-	        }
-	        return cards.remove(0);
-	    }
+		if (cards.isEmpty()) {
+			throw new IllegalStateException("Deck is empty. Cannot deal a card.");
+		}
+		return cards.remove(0);
+	}
 //		Deck a = new Deck();
 //		Deck.shuffle(a);
 //		Card dealtCard = ((List<Card>) a).remove(0);

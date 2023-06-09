@@ -12,3 +12,9 @@ Dealer stay
 Player: daj
 Player hit
 Dealer stay
+Player: dsds
+Player hit
+Dealer stay
+Player: sfsd
+Player hit
+Dealer stay

@@ -87,8 +87,8 @@ public class Player {
 	}
 
 	private int calculateScore(List<Card> hand) {
-		//calculates the score based on the blackjack rules
-		//considering the values of the cards in the hand
+		// calculates the score based on the blackjack rules
+		// considering the values of the cards in the hand
 		int score = 0;
 		int numAces = 0;
 
@@ -111,25 +111,24 @@ public class Player {
 
 		return score;
 	}
-	
-	 public int getValue() {
-	        int value = 0;
-	        int numAces = 0;
 
-	        for (Card card : hand) {
-	            value += card.getValue();
-	            if (card.getValue() == 11) {
-	                numAces++;
-	            }
-	        }
+	public int getValue() {
+		int value = 0;
+		int numAces = 0;
 
-	        while (value > 21 && numAces > 0) {
-	            value -= 10;
-	            numAces--;
-	        }
+		for (Card card : hand) {
+			value += card.getValue();
+			if (card.getValue() == 11) {
+				numAces++;
+			}
+		}
 
-	        return value;
-	    }
+		while (value > 21 && numAces > 0) {
+			value -= 10;
+			numAces--;
+		}
 
+		return value;
+	}
 
 }
